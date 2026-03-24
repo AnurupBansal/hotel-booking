@@ -66,17 +66,50 @@ app.get("/rooms/:id", async (req, res) => {
 
 app.post("/book", async (req, res) => {
   try {
-    const {
-      roomId,
-      userName,
-      userEmail,
-      checkIn,
-      checkOut,
-      totalPrice,
-    } = req.body;
+    const { roomId, userName, userEmail, checkIn, checkOut } = req.body;
+
+    if (!roomId || !userName || !userEmail || !checkIn || !checkOut) {
+      return res.status(400).json({ message: "Invalid input" });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(userEmail)) {
+      return res.status(400).json({ message: "Invalid input" });
+    }
 
     const checkInDate = new Date(checkIn);
     const checkOutDate = new Date(checkOut);
+
+    if (
+      Number.isNaN(checkInDate.getTime()) ||
+      Number.isNaN(checkOutDate.getTime())
+    ) {
+      return res.status(400).json({ message: "Invalid input" });
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    checkInDate.setHours(0, 0, 0, 0);
+    checkOutDate.setHours(0, 0, 0, 0);
+
+    if (checkInDate >= checkOutDate || checkInDate < today) {
+      return res.status(400).json({ message: "Invalid input" });
+    }
+
+    const room = await prisma.room.findUnique({
+      where: { id: roomId },
+    });
+
+    if (!room) {
+      return res.status(404).json({ message: "Room not found" });
+    }
+
+    const millisecondsPerDay = 1000 * 60 * 60 * 24;
+    const nights = Math.floor(
+      (checkOutDate.getTime() - checkInDate.getTime()) / millisecondsPerDay
+    );
+    const totalPrice = nights * room.pricePerNight;
 
     const existingBooking = await prisma.booking.findFirst({
       where: {
@@ -107,7 +140,7 @@ app.post("/book", async (req, res) => {
       },
     });
 
-    res.status(201).json(booking);
+    res.status(200).json(booking);
   } catch (error) {
     console.error("Error creating booking:", error);
     res.status(500).json({ error: "Failed to create booking" });
