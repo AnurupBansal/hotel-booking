@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Room {
+  id            String    @id @default(uuid())
+  name          String
+  description   String
+  pricePerNight Int
+  maxGuests     Int
+  images        String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  bookings      Booking[]
+
+  @@index([pricePerNight])
+  @@index([maxGuests])
+}
+
+model Booking {
+  id         String   @id @default(uuid())
+  roomId     String
+  userName   String
+  userEmail  String
+  checkIn    DateTime
+  checkOut   DateTime
+  totalPrice Int
+  status     String
+  createdAt  DateTime @default(now())
+  room       Room     @relation(fields: [roomId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+
+  @@index([roomId])
+  @@index([userEmail])
+  @@index([checkIn, checkOut])
+  @@index([status])
+}
