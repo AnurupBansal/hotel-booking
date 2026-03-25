@@ -20,8 +20,10 @@ app.get("/", (req, res) => {
   res.send("Backend running 🚀");
 });
 
-app.listen(8080, () => {
-  console.log("Server running on port 8080");
+const PORT = process.env.PORT || 5050;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
 app.post("/rooms", async (req, res) => {
