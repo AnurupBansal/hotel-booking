@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 function formatDate(value: string) {
   if (!value) {
@@ -53,7 +54,7 @@ function formatPrice(value: string) {
   }).format(amount);
 }
 
-export default function BookingConfirmationPage() {
+function BookingConfirmationContent() {
   const searchParams = useSearchParams();
 
   const roomName = searchParams.get("roomName") ?? "Your room";
@@ -149,5 +150,25 @@ export default function BookingConfirmationPage() {
         </section>
       </div>
     </div>
+  );
+}
+
+export default function BookingConfirmationPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="bg-[#0B0B0C] px-6 py-20 text-white">
+          <div className="mx-auto max-w-xl">
+            <section className="py-20 text-center">
+              <h1 className="text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
+                Loading booking confirmation...
+              </h1>
+            </section>
+          </div>
+        </div>
+      }
+    >
+      <BookingConfirmationContent />
+    </Suspense>
   );
 }
