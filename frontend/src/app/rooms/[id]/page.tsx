@@ -220,8 +220,12 @@ export default function RoomDetailPage() {
       return;
     }
 
-    if ("showPicker" in input) {
-      input.showPicker();
+    const dateInput = input as HTMLInputElement & {
+      showPicker?: () => void;
+    };
+
+    if (typeof dateInput.showPicker === "function") {
+      dateInput.showPicker();
       return;
     }
 
