@@ -7,4 +7,4 @@ RUN npm install
 
 COPY . .
 
-CMD ["sh", "-c", "npx prisma generate && npx prisma migrate deploy && node index.js"]
+CMD ["sh", "-c", "npx prisma generate && node index.js"]
