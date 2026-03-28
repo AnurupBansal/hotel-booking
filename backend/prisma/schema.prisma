@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
 model Room {
@@ -19,6 +19,7 @@ model Room {
 
   @@index([pricePerNight])
   @@index([maxGuests])
+  @@map("rooms")
 }
 
 model Booking {
@@ -37,4 +38,5 @@ model Booking {
   @@index([userEmail])
   @@index([checkIn, checkOut])
   @@index([status])
+  @@map("bookings")
 }
