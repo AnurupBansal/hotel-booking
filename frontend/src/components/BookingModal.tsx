@@ -32,6 +32,14 @@ function formatDate(value: string) {
   }).format(new Date(value));
 }
 
+function formatPrice(value: number) {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(value);
+}
+
 export default function BookingModal({
   isOpen,
   room,
@@ -79,7 +87,7 @@ export default function BookingModal({
         type="button"
         aria-label="Close booking modal"
         onClick={onClose}
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        className="absolute inset-0 bg-blue-950/10 backdrop-blur-sm"
       />
 
       <div className="absolute inset-x-0 bottom-0 md:flex md:items-center md:justify-center md:p-6">
@@ -87,23 +95,23 @@ export default function BookingModal({
           role="dialog"
           aria-modal="true"
           aria-label="Confirm your booking"
-          className="relative max-h-[92vh] w-full overflow-hidden rounded-t-[28px] border border-white/8 bg-[#111214] shadow-[0_-20px_60px_rgba(0,0,0,0.45)] md:max-h-[85vh] md:max-w-2xl md:rounded-[28px] md:shadow-[0_24px_80px_rgba(0,0,0,0.45)]"
+          className="relative max-h-[92vh] w-full overflow-hidden rounded-t-[28px] border border-blue-100 bg-white shadow-sm md:max-h-[85vh] md:max-w-2xl md:rounded-[28px]"
         >
-          <div className="mx-auto mt-3 h-1.5 w-14 rounded-full bg-white/15 md:hidden" />
+          <div className="mx-auto mt-3 h-1.5 w-14 rounded-full bg-blue-100 md:hidden" />
 
-          <div className="flex items-center justify-between border-b border-white/8 px-5 py-4 md:px-7 md:py-5">
+          <div className="flex items-center justify-between border-b border-blue-100 px-5 py-4 md:px-7 md:py-5">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.28em] text-[#E8A317]">
+              <p className="text-xs font-medium uppercase tracking-[0.28em] text-blue-600">
                 Final Step
               </p>
-              <h2 className="mt-2 text-lg font-semibold text-white md:text-xl">
+              <h2 className="mt-2 text-lg font-semibold text-gray-900 md:text-xl">
                 Confirm your stay
               </h2>
             </div>
             <button
               type="button"
               onClick={onClose}
-              className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-zinc-300 hover:bg-white/10 hover:text-white"
+              className="rounded-lg border border-blue-100 bg-white px-3 py-1.5 text-sm font-medium text-gray-600 transition hover:bg-blue-50 hover:text-gray-900"
             >
               Close
             </button>
@@ -111,45 +119,45 @@ export default function BookingModal({
 
           <div className="max-h-[calc(92vh-72px)] overflow-y-auto px-5 pb-6 pt-5 md:max-h-[calc(85vh-84px)] md:px-7 md:pb-7">
             <div className="grid gap-6 md:grid-cols-[0.95fr_1.05fr]">
-              <section className="rounded-[24px] border border-white/8 bg-[#0d0e10] p-5 shadow-[0_16px_40px_rgba(0,0,0,0.24)]">
-                <p className="text-sm font-medium text-zinc-400">
+              <section className="rounded-xl border border-blue-100 bg-blue-50 p-5 shadow-sm">
+                <p className="text-sm font-medium text-gray-600">
                   Booking summary
                 </p>
-                <div className="mt-5 space-y-4 text-sm text-zinc-300">
+                <div className="mt-5 space-y-4 text-sm text-gray-900">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">
+                    <p className="text-xs uppercase tracking-[0.2em] text-gray-600">
                       Room
                     </p>
-                    <p className="mt-2 text-lg font-semibold text-white">
+                    <p className="mt-2 text-lg font-semibold text-gray-900">
                       {room.name}
                     </p>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="rounded-2xl border border-white/8 bg-white/3 p-3">
-                      <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">
+                    <div className="rounded-xl border border-blue-100 bg-white p-3">
+                      <p className="text-xs uppercase tracking-[0.18em] text-gray-600">
                         Check-in
                       </p>
-                      <p className="mt-2 font-medium text-white">
+                      <p className="mt-2 font-medium text-gray-900">
                         {formatDate(checkIn)}
                       </p>
                     </div>
-                    <div className="rounded-2xl border border-white/8 bg-white/3 p-3">
-                      <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">
+                    <div className="rounded-xl border border-blue-100 bg-white p-3">
+                      <p className="text-xs uppercase tracking-[0.18em] text-gray-600">
                         Check-out
                       </p>
-                      <p className="mt-2 font-medium text-white">
+                      <p className="mt-2 font-medium text-gray-900">
                         {formatDate(checkOut)}
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between rounded-2xl border border-white/8 bg-white/3 px-4 py-3">
-                    <span className="text-zinc-400">Nights</span>
-                    <span className="font-medium text-white">{nights}</span>
+                  <div className="flex items-center justify-between rounded-xl border border-blue-100 bg-white px-4 py-3">
+                    <span className="text-gray-600">Nights</span>
+                    <span className="font-medium text-gray-900">{nights}</span>
                   </div>
-                  <div className="flex items-center justify-between rounded-2xl border border-[#E8A317]/20 bg-[#E8A317]/8 px-4 py-4">
-                    <span className="text-zinc-300">Total price</span>
-                    <span className="text-xl font-semibold text-[#F5C766]">
-                      ${totalPrice}
+                  <div className="flex items-center justify-between rounded-xl border border-blue-100 bg-white px-4 py-4">
+                    <span className="text-gray-600">Total price</span>
+                    <span className="text-xl font-semibold text-gray-900">
+                      {formatPrice(totalPrice)}
                     </span>
                   </div>
                 </div>
@@ -157,16 +165,16 @@ export default function BookingModal({
 
               <form onSubmit={onSubmit} className="space-y-5">
                 <div>
-                  <p className="text-sm font-medium text-zinc-400">
+                  <p className="text-sm font-medium text-gray-600">
                     Guest details
                   </p>
-                  <p className="mt-2 text-sm leading-6 text-zinc-500">
+                  <p className="mt-2 text-sm leading-6 text-gray-600">
                     Add the details for the reservation confirmation.
                   </p>
                 </div>
 
                 <label className="block">
-                  <span className="mb-2 block text-sm font-medium text-zinc-200">
+                  <span className="mb-2 block text-sm font-medium text-gray-900">
                     Name
                   </span>
                   <input
@@ -175,13 +183,13 @@ export default function BookingModal({
                     value={guestDetails.userName}
                     onChange={onGuestDetailsChange}
                     required
-                    className="w-full rounded-2xl border border-white/8 bg-[#0d0e10] px-4 py-3.5 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-[#E8A317] focus:ring-2 focus:ring-[#E8A317]/20"
+                    className="w-full rounded-lg border border-blue-100 bg-white px-4 py-3.5 text-sm text-gray-900 outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-blue-200"
                     placeholder="Your full name"
                   />
                 </label>
 
                 <label className="block">
-                  <span className="mb-2 block text-sm font-medium text-zinc-200">
+                  <span className="mb-2 block text-sm font-medium text-gray-900">
                     Email
                   </span>
                   <input
@@ -190,19 +198,19 @@ export default function BookingModal({
                     value={guestDetails.userEmail}
                     onChange={onGuestDetailsChange}
                     required
-                    className="w-full rounded-2xl border border-white/8 bg-[#0d0e10] px-4 py-3.5 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-[#E8A317] focus:ring-2 focus:ring-[#E8A317]/20"
+                    className="w-full rounded-lg border border-blue-100 bg-white px-4 py-3.5 text-sm text-gray-900 outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-blue-200"
                     placeholder="you@example.com"
                   />
                 </label>
 
                 {formError ? (
-                  <div className="rounded-2xl border border-red-900/60 bg-red-950/30 px-4 py-3 text-sm text-red-300">
+                  <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
                     {formError}
                   </div>
                 ) : null}
 
                 {successMessage ? (
-                  <div className="rounded-2xl border border-emerald-900/50 bg-emerald-950/30 px-4 py-3 text-sm text-emerald-300">
+                  <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-600">
                     {successMessage}
                   </div>
                 ) : null}
@@ -210,7 +218,7 @@ export default function BookingModal({
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full rounded-full bg-white px-5 py-3.5 text-sm font-medium text-black shadow-[0_10px_30px_rgba(255,255,255,0.08)] hover:bg-zinc-200 disabled:cursor-not-allowed disabled:bg-zinc-500 disabled:text-zinc-900"
+                  className="w-full rounded-lg bg-blue-600 px-5 py-3.5 text-sm font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-200 disabled:text-blue-50"
                 >
                   {submitting ? "Confirming booking..." : "Confirm Booking"}
                 </button>

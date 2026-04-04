@@ -66,33 +66,35 @@ export default function RoomsPage() {
   }, []);
 
   return (
-    <div className="px-6 py-12 text-white md:py-16">
+    <div className="bg-white px-6 py-12 text-gray-900 md:py-16">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex items-end justify-between gap-4 md:mb-14">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.28em] text-[#E8A317]">
-              Curated Stays
+              Rooms
             </p>
-            <h1 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-5xl">
-              Rooms worth staying in
+            <h1 className="mt-4 text-3xl font-semibold tracking-tight text-gray-900 md:text-5xl">
+              Mayapur Inspection House
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-400">
-              Explore refined rooms designed for short breaks, long weekends,
-              and everything in between.
+            <p className="mt-4 max-w-2xl text-base font-medium text-gray-700">
+              UP Irrigation & Water Resources Department
+            </p>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-gray-600">
+              Explore available rooms with a clean and straightforward booking flow.
             </p>
           </div>
         </div>
 
         {loading ? (
-          <div className="rounded-2xl border border-[#1E1F22] bg-[#111214] p-6 text-sm text-zinc-400 shadow-[0_12px_40px_rgba(0,0,0,0.22)]">
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 text-sm text-gray-600 shadow-sm">
             Loading rooms...
           </div>
         ) : error ? (
-          <div className="rounded-2xl border border-red-900/60 bg-red-950/30 p-6 text-sm text-red-300 shadow-[0_12px_40px_rgba(0,0,0,0.22)]">
+          <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-sm text-red-700 shadow-sm">
             {error}
           </div>
         ) : rooms.length === 0 ? (
-          <div className="rounded-2xl border border-[#1E1F22] bg-[#111214] p-6 text-sm text-zinc-400 shadow-[0_12px_40px_rgba(0,0,0,0.22)]">
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 text-sm text-gray-600 shadow-sm">
             No rooms available right now.
           </div>
         ) : (
@@ -100,9 +102,9 @@ export default function RoomsPage() {
             {rooms.map((room) => (
               <article
                 key={room.id}
-                className="group overflow-hidden rounded-2xl border border-[#1E1F22] bg-[#111214] shadow-[0_12px_36px_rgba(0,0,0,0.24)] transition duration-300 hover:scale-[1.015] hover:shadow-[0_20px_48px_rgba(0,0,0,0.38)]"
+                className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-lg"
               >
-                <div className="relative h-56 overflow-hidden rounded-2xl m-3 mb-0">
+                <div className="relative m-3 mb-0 h-56 overflow-hidden rounded-2xl">
                   <Image
                     loader={imageLoader}
                     unoptimized
@@ -112,25 +114,25 @@ export default function RoomsPage() {
                     sizes="(max-width: 1024px) 100vw, 33vw"
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0c]/80 via-[#0b0b0c]/25 to-transparent" />
-                  <div className="absolute right-4 top-4 rounded-full border border-white/10 bg-white/10 px-3.5 py-1.5 text-sm font-medium text-white shadow-[0_8px_24px_rgba(0,0,0,0.18)] backdrop-blur-md">
-                    ${room.pricePerNight}/night
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
+                  <div className="absolute right-4 top-4 rounded-full border border-white/70 bg-white/90 px-3.5 py-1.5 text-sm font-medium text-gray-900 shadow-sm backdrop-blur-md">
+                    ₹{room.pricePerNight}/night
                   </div>
                 </div>
 
                 <div className="flex flex-1 flex-col p-6 pt-5">
                   <div className="flex-1">
-                    <h2 className="text-2xl font-semibold tracking-tight text-white">
+                    <h2 className="text-2xl font-semibold tracking-tight text-gray-900">
                       {room.name}
                     </h2>
-                    <p className="mt-3 line-clamp-3 text-sm leading-6 text-zinc-400">
+                    <p className="mt-3 line-clamp-3 text-sm leading-6 text-gray-600">
                       {room.description}
                     </p>
                   </div>
 
                   <Link
                     href={`/rooms/${room.id}`}
-                    className="mt-8 inline-flex w-fit items-center rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black shadow-[0_10px_30px_rgba(255,255,255,0.08)] hover:bg-zinc-200"
+                    className="mt-8 inline-flex w-fit items-center rounded-full bg-gray-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-gray-800"
                   >
                     View Details
                   </Link>

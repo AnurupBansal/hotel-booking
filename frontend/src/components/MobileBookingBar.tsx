@@ -29,17 +29,17 @@ export default function MobileBookingBar({
   const buttonLabel = isDateSelected ? "Continue" : "Select dates";
 
   return (
-    <div className="fixed bottom-0 left-0 z-40 w-full border-t border-[#232428] bg-[#111214] px-4 py-3 md:hidden">
+    <div className="fixed bottom-0 left-0 z-40 w-full border-t border-blue-100 bg-white px-4 py-3 shadow-sm md:hidden">
       <div className="flex items-center justify-between gap-4">
         <div className="min-w-0">
-          <p className="text-white font-semibold">
+          <p className="font-semibold text-gray-900">
             {isDateSelected ? formatPrice(totalPrice) : formatPrice(pricePerNight)}{" "}
-            <span className="font-medium text-zinc-400">
+            <span className="font-medium text-gray-600">
               {isDateSelected ? "total" : "/ night"}
             </span>
           </p>
           {isDateSelected ? (
-            <p className="truncate text-xs text-zinc-400 transition duration-200">
+            <p className="truncate text-xs text-gray-600 transition duration-200">
               {hasNights
                 ? `${nights} night${nights > 1 ? "s" : ""} · ${formatPrice(pricePerNight)} / night`
                 : "Select a valid stay to continue"}
@@ -51,7 +51,7 @@ export default function MobileBookingBar({
           type="button"
           onClick={onAction}
           disabled={isDateSelected && isContinueDisabled}
-          className="rounded-full bg-white px-5 py-2 text-sm font-medium text-black transition duration-200 hover:bg-gray-200 disabled:cursor-not-allowed disabled:bg-zinc-500 disabled:text-zinc-900"
+          className="rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white transition duration-200 hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-200 disabled:text-blue-50"
         >
           {buttonLabel}
         </button>
