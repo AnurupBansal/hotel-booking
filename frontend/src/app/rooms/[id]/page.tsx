@@ -319,26 +319,26 @@ export default function RoomDetailPage() {
   }
 
   return (
-    <div className="px-6 py-12 pb-24 text-white md:py-16 md:pb-16">
+    <div className="px-6 py-12 pb-24 text-gray-900 md:py-16 md:pb-16">
       <div className="mx-auto max-w-7xl">
         <Link
           href="/rooms"
-          className="text-sm font-medium text-zinc-400 transition hover:text-white"
+          className="text-sm font-medium text-gray-600 transition hover:text-gray-900"
         >
           Back to rooms
         </Link>
 
         {loading ? (
-          <div className="mt-8 rounded-2xl border border-[#1E1F22] bg-[#111214] p-6 text-sm text-zinc-400 shadow-[0_12px_40px_rgba(0,0,0,0.22)]">
+          <div className="mt-8 rounded-2xl border border-blue-100 bg-white p-6 text-sm text-gray-600 shadow-sm">
             Loading room...
           </div>
         ) : pageError ? (
-          <div className="mt-8 rounded-2xl border border-red-900/60 bg-red-950/30 p-6 text-sm text-red-300 shadow-[0_12px_40px_rgba(0,0,0,0.22)]">
+          <div className="mt-8 rounded-2xl border border-red-200 bg-red-50 p-6 text-sm text-red-600 shadow-sm">
             {pageError}
           </div>
         ) : room ? (
-          <div className="mt-8 grid gap-12 xl:grid-cols-[1.2fr_0.8fr] xl:gap-14">
-            <section className="overflow-hidden rounded-[28px] border border-[#1E1F22] bg-[#111214] shadow-[0_24px_64px_rgba(0,0,0,0.3)]">
+          <div className="mt-8 grid gap-6 xl:grid-cols-[1.2fr_0.8fr] xl:gap-8">
+            <section className="overflow-hidden rounded-[28px] border border-blue-100 bg-white shadow-sm">
               <div className="relative h-56 sm:h-72 lg:h-[28rem]">
                 <Image
                   loader={imageLoader}
@@ -349,40 +349,37 @@ export default function RoomDetailPage() {
                   sizes="(max-width: 1280px) 100vw, 60vw"
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#060607]/95 via-[#0b0b0c]/55 to-[#0b0b0c]/10" />
-                <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/35 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/15 to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-end justify-between gap-4 md:bottom-8 md:left-8 md:right-8">
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.28em] text-[#F3C56B]">
+                    <p className="text-xs font-medium uppercase tracking-[0.28em] text-blue-100">
                       Signature Room
                     </p>
                     <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight text-white md:text-5xl">
                       {room.name}
                     </h1>
                   </div>
-                  <div className="rounded-full border border-white/15 bg-black/35 px-5 py-2.5 text-sm font-medium text-white shadow-[0_14px_32px_rgba(0,0,0,0.28)] backdrop-blur-xl">
-                    From ${room.pricePerNight} / night
-                  </div>
                 </div>
               </div>
 
-              <div className="grid gap-10 p-6 sm:p-8 md:grid-cols-[1fr_auto] md:items-start">
+              <div className="grid gap-6 p-6 sm:p-8 md:grid-cols-[1fr_auto] md:items-start">
                 <div>
-                  <p className="text-base leading-8 text-zinc-400">
+                  <p className="text-base leading-8 text-gray-600">
                     {room.description}
                   </p>
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1">
-                  <div className="rounded-2xl border border-white/8 bg-[#141518] p-5">
-                    <p className="text-sm text-zinc-400">Price per night</p>
-                    <p className="mt-2 text-2xl font-semibold text-white">
-                      ${room.pricePerNight}
+                  <div className="rounded-2xl border border-blue-100 bg-white p-5 shadow-sm">
+                    <p className="text-sm text-gray-600">Price per night</p>
+                    <p className="mt-2 text-2xl font-semibold text-gray-900">
+                      ₹{room.pricePerNight}
                     </p>
                   </div>
-                  <div className="rounded-2xl border border-white/8 bg-[#141518] p-5">
-                    <p className="text-sm text-zinc-400">Max guests</p>
-                    <p className="mt-2 text-2xl font-semibold text-white">
+                  <div className="rounded-2xl border border-blue-100 bg-white p-5 shadow-sm">
+                    <p className="text-sm text-gray-600">Max guests</p>
+                    <p className="mt-2 text-2xl font-semibold text-gray-900">
                       {room.maxGuests}
                     </p>
                   </div>
@@ -393,30 +390,30 @@ export default function RoomDetailPage() {
             <aside className="xl:sticky xl:top-24 xl:self-start">
               <section
                 ref={datePickerSectionRef}
-                className={`rounded-[32px] border bg-[#17181c] p-6 shadow-[0_28px_70px_rgba(0,0,0,0.42)] transition-[border-color,box-shadow] duration-300 md:p-8 ${
+                className={`rounded-xl border bg-white p-6 shadow-sm transition-[border-color,box-shadow] duration-300 md:p-6 ${
                   isDateSectionHighlighted
-                    ? "border-white/20 ring-2 ring-white/20"
-                    : "border-white/10"
+                    ? "border-blue-200 ring-2 ring-blue-200"
+                    : "border-blue-100"
                 }`}
               >
                 <div className="space-y-6">
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.28em] text-[#E8A317]">
+                    <p className="text-xs font-medium uppercase tracking-[0.28em] text-blue-600">
                       Step 1
                     </p>
-                    <h2 className="mt-4 text-2xl font-semibold tracking-tight text-white">
+                    <h2 className="mt-4 text-2xl font-semibold tracking-tight text-gray-900">
                       Select your dates
                     </h2>
-                    <p className="mt-3 text-sm leading-6 text-zinc-400">
+                    <p className="mt-3 text-sm leading-6 text-gray-600">
                       Choose your stay dates first. Guest details come in the
                       next step.
                     </p>
                   </div>
 
-                  <div className="border-t border-white/8 pt-6">
-                    <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-1">
+                  <div className="border-t border-blue-100 pt-6">
+                    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
                       <label className="block">
-                        <span className="mb-2 block text-sm font-medium text-zinc-200">
+                        <span className="mb-2 block text-sm font-medium text-gray-900">
                           Check-in date
                         </span>
                         <input
@@ -430,12 +427,12 @@ export default function RoomDetailPage() {
                           }
                           min={getTodayDate()}
                           required
-                          className="w-full rounded-2xl border border-white/8 bg-[#111216] px-4 py-3.5 text-sm text-white outline-none focus:border-[#E8A317] focus:ring-2 focus:ring-[#E8A317]/20"
+                          className="w-full rounded-lg border border-blue-100 bg-white px-4 py-3.5 text-sm text-gray-900 outline-none transition focus:ring-2 focus:ring-blue-200"
                         />
                       </label>
 
                       <label className="block">
-                        <span className="mb-2 block text-sm font-medium text-zinc-200">
+                        <span className="mb-2 block text-sm font-medium text-gray-900">
                           Check-out date
                         </span>
                         <input
@@ -449,82 +446,82 @@ export default function RoomDetailPage() {
                           }
                           min={dateSelection.checkIn || getTodayDate()}
                           required
-                          className="w-full rounded-2xl border border-white/8 bg-[#111216] px-4 py-3.5 text-sm text-white outline-none focus:border-[#E8A317] focus:ring-2 focus:ring-[#E8A317]/20"
+                          className="w-full rounded-lg border border-blue-100 bg-white px-4 py-3.5 text-sm text-gray-900 outline-none transition focus:ring-2 focus:ring-blue-200"
                         />
                       </label>
                     </div>
                   </div>
 
-                  <div className="border-t border-white/8 pt-6">
-                    <div className="rounded-[24px] border border-white/8 bg-[#111216] p-5">
+                  <div className="border-t border-blue-100 pt-6">
+                    <div className="rounded-xl border border-blue-100 bg-white p-4 shadow-sm">
                       <div className="flex items-center justify-between gap-4">
                         <div>
-                          <p className="text-sm font-medium text-zinc-200">
+                          <p className="text-sm font-medium text-gray-900">
                             Booking summary
                           </p>
-                          <p className="mt-1 text-sm text-zinc-500">
+                          <p className="mt-1 text-sm text-gray-600">
                             Live pricing updates as you select dates.
                           </p>
                         </div>
-                        <div className="rounded-full border border-white/8 bg-white/5 px-3.5 py-1.5 text-sm font-medium text-white">
+                        <div className="rounded-full border border-blue-100 bg-white px-3.5 py-1.5 text-sm font-medium text-gray-900">
                           {nights > 0
                             ? `${nights} night${nights > 1 ? "s" : ""}`
                             : "No dates"}
                         </div>
                       </div>
 
-                      <div className="mt-5 space-y-4 border-t border-white/8 pt-5 text-sm text-zinc-300">
+                      <div className="mt-5 space-y-4 border-t border-blue-100 pt-5 text-sm text-gray-900">
                         <div className="flex items-center justify-between gap-4">
-                          <span className="text-zinc-500">Check-in</span>
+                          <span className="text-gray-600">Check-in</span>
                           <span>{formatDate(dateSelection.checkIn)}</span>
                         </div>
                         <div className="flex items-center justify-between gap-4">
-                          <span className="text-zinc-500">Check-out</span>
+                          <span className="text-gray-600">Check-out</span>
                           <span>{formatDate(dateSelection.checkOut)}</span>
                         </div>
                         <div className="flex items-center justify-between gap-4">
-                          <span className="text-zinc-500">Price per night</span>
-                          <span>${room.pricePerNight}</span>
+                          <span className="text-gray-600">Price per night</span>
+                          <span>₹{room.pricePerNight}</span>
                         </div>
                         <div className="flex items-center justify-between gap-4">
-                          <span className="text-zinc-500">Stay duration</span>
+                          <span className="text-gray-600">Stay duration</span>
                           <span>
                             {nights > 0
                               ? `${nights} night${nights > 1 ? "s" : ""}`
                               : "--"}
                           </span>
                         </div>
-                        <div className="flex items-center justify-between gap-4 rounded-2xl border border-[#E8A317]/15 bg-[#E8A317]/8 px-4 py-3">
-                          <span className="text-zinc-300">
+                        <div className="flex items-center justify-between gap-4 rounded-xl border border-blue-100 bg-white px-4 py-3">
+                          <span className="text-gray-600">
                             {nights > 0
-                              ? `$${room.pricePerNight} x ${nights} night${nights > 1 ? "s" : ""}`
+                              ? `₹${room.pricePerNight} x ${nights} night${nights > 1 ? "s" : ""}`
                               : "Price calculation"}
                           </span>
-                          <span className="font-semibold text-white">
-                            ${totalPrice || 0}
+                          <span className="font-semibold text-gray-900">
+                            ₹{totalPrice || 0}
                           </span>
                         </div>
-                        <div className="flex items-end justify-between gap-4 border-t border-white/8 pt-4">
+                        <div className="flex items-end justify-between gap-4 border-t border-blue-100 pt-4">
                           <div>
-                            <p className="text-sm text-zinc-500">Total price</p>
-                            <p className="mt-1 text-xs uppercase tracking-[0.2em] text-[#F3C56B]">
+                            <p className="text-sm text-gray-600">Total price</p>
+                            <p className="mt-1 text-xs uppercase tracking-[0.2em] text-blue-600">
                               Before confirmation
                             </p>
                           </div>
-                          <span className="text-3xl font-semibold tracking-tight text-white">
-                            ${totalPrice || 0}
+                          <span className="text-3xl font-semibold tracking-tight text-gray-900">
+                            ₹{totalPrice || 0}
                           </span>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="border-t border-white/8 pt-6">
+                  <div className="border-t border-blue-100 pt-6">
                     <button
                       type="button"
                       onClick={handleContinue}
                       disabled={!isValidDateRange}
-                      className="w-full rounded-2xl bg-white px-5 py-4 text-sm font-semibold text-black shadow-[0_16px_40px_rgba(255,255,255,0.1)] transition duration-200 hover:bg-zinc-100 disabled:cursor-not-allowed disabled:bg-zinc-500 disabled:text-zinc-900"
+                      className="w-full rounded-lg bg-blue-600 px-5 py-4 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-200 disabled:text-blue-50"
                     >
                       Check Availability
                     </button>

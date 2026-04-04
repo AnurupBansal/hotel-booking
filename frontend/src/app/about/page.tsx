@@ -25,28 +25,30 @@ const features = [
 
 export default function AboutPage() {
   return (
-    <div className="bg-[#0B0B0C] text-white">
+    <div className="bg-white text-gray-900">
       <section className="px-6 py-20">
         <div className="mx-auto max-w-4xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.28em] text-[#E8A317]">
-            Our Story
+            About
           </p>
-          <h1 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl md:text-6xl">
-            About Us
+          <h1 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-gray-900 sm:text-5xl md:text-6xl">
+            Mayapur Inspection House
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-gray-400 md:text-lg">
-            Crafting memorable stays with comfort and elegance
+          <p className="mx-auto mt-4 max-w-2xl text-base font-medium text-gray-700 md:text-lg">
+            UP Irrigation & Water Resources Department
+          </p>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-gray-600 md:text-lg">
+            A comfortable and dependable stay experience with a simple, minimal interface.
           </p>
         </div>
       </section>
 
       <section className="px-6 pb-20">
         <div className="mx-auto max-w-3xl">
-          <p className="text-center text-base leading-relaxed text-gray-400 md:text-lg">
-            We create a premium hotel experience shaped by comfort,
-            simplicity, and quiet elegance. Every detail is designed to make
-            guests feel at ease, from intuitive booking to refined spaces that
-            balance warmth, style, and effortless hospitality.
+          <p className="text-center text-base leading-relaxed text-gray-600 md:text-lg">
+            Mayapur Inspection House provides orderly, comfortable accommodation
+            designed to support official visits and a smooth guest experience from
+            arrival through departure.
           </p>
         </div>
       </section>
@@ -57,12 +59,12 @@ export default function AboutPage() {
             {features.map((feature) => (
               <article
                 key={feature.title}
-                className="rounded-xl border border-[#1E1F22] bg-[#111214] p-6 shadow-[0_14px_40px_rgba(0,0,0,0.22)]"
+                className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
               >
-                <h2 className="text-lg font-semibold tracking-tight text-white">
+                <h2 className="text-lg font-semibold tracking-tight text-gray-900">
                   {feature.title}
                 </h2>
-                <p className="mt-3 text-sm leading-6 text-gray-400">
+                <p className="mt-3 text-sm leading-6 text-gray-600">
                   {feature.description}
                 </p>
               </article>
@@ -72,13 +74,13 @@ export default function AboutPage() {
       </section>
 
       <section className="px-6 pb-24">
-        <div className="mx-auto max-w-4xl rounded-[1.75rem] border border-[#1E1F22] bg-[#111214] px-8 py-12 text-center shadow-[0_18px_50px_rgba(0,0,0,0.24)]">
-          <h2 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
+        <div className="mx-auto max-w-4xl rounded-[1.75rem] border border-gray-200 bg-gray-50 px-8 py-12 text-center shadow-sm">
+          <h2 className="text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl">
             Ready to book your stay?
           </h2>
           <Link
             href="/rooms"
-            className="mt-8 inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-medium text-black shadow-[0_10px_28px_rgba(255,255,255,0.08)] hover:bg-zinc-200"
+            className="mt-8 inline-flex items-center rounded-full bg-gray-900 px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-gray-800"
           >
             View Rooms
           </Link>
