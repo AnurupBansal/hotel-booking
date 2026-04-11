@@ -217,20 +217,20 @@ export default function EditBookingPage() {
           </div>
         )}
 
-        <div className="flex gap-3 pt-2">
-          <button
-            type="submit"
-            disabled={submitting}
-            className="rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300"
-          >
-            {submitting ? "Saving..." : "Save Changes"}
-          </button>
+        <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row">
           <button
             type="button"
             onClick={() => router.back()}
-            className="rounded-lg border border-gray-200 px-6 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
+            className="w-full rounded-lg border border-gray-200 px-6 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 sm:w-auto"
           >
             Cancel
+          </button>
+          <button
+            type="submit"
+            disabled={submitting}
+            className="w-full rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300 sm:w-auto"
+          >
+            {submitting ? "Saving..." : "Save Changes"}
           </button>
         </div>
       </form>
