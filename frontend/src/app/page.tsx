@@ -189,10 +189,10 @@ export default function Home() {
             <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
               <div>
                 <p className="text-xs font-medium uppercase tracking-[0.28em] text-[#E8A317]">
-                  Reserve Your Stay
+                  Plan Your Stay
                 </p>
                 <h2 className="mt-4 text-3xl font-semibold tracking-tight text-gray-900 md:text-4xl">
-                  Ready to book your stay?
+                  Check room availability
                 </h2>
               </div>
 

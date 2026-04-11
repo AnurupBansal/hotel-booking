@@ -25,18 +25,30 @@ model Room {
 model Booking {
   id         String   @id @default(uuid())
   roomId     String
-  userName   String
-  userEmail  String
+  guestName  String   @map("guest_name")
+  guestPhone String   @map("guest_phone")
+  guestEmail String?  @map("guest_email")
   checkIn    DateTime
   checkOut   DateTime
-  totalPrice Int
+  amountPaid Int      @map("amount_paid")
   status     String
   createdAt  DateTime @default(now())
   room       Room     @relation(fields: [roomId], references: [id], onDelete: Restrict, onUpdate: Cascade)
 
   @@index([roomId])
-  @@index([userEmail])
+  @@index([guestPhone])
   @@index([checkIn, checkOut])
   @@index([status])
   @@map("bookings")
+}
+
+model Admin {
+  id           String   @id @default(uuid())
+  username     String   @unique
+  passwordHash String   @map("password_hash")
+  name         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("admins")
 }
